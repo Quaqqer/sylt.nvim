@@ -1,10 +1,30 @@
+-- Stolen from https://www.reddit.com/r/neovim/comments/tk1hby/get_the_path_to_the_current_lua_script_in_neovim/
+local function is_win()
+	return package.config:sub(1, 1) == "\\"
+end
+
+local function get_path_separator()
+	if is_win() then
+		return "\\"
+	end
+	return "/"
+end
+
+local function script_path()
+	local str = debug.getinfo(2, "S").source:sub(2)
+	if is_win() then
+		str = str:gsub("/", "\\")
+	end
+	return str:match("(.*" .. get_path_separator() .. ")")
+end
+
 local M = {}
 
 function M.setup_treesitter()
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 	parser_config.sylt = {
 		install_info = {
-			url = "https://github.com/Quaqqer/tree-sitter-sylt.git",
+			url = script_path() .. "./../tree-sitter-sylt",
 			files = { "src/parser.c" },
 		},
 		filetype = "sylt",

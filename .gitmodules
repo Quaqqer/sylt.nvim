@@ -1,0 +1,3 @@
+[submodule "tree-sitter-sylt"]
+	path = tree-sitter-sylt
+	url = git@github.com:Quaqqer/tree-sitter-sylt.git
