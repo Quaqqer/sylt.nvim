@@ -23,3 +23,5 @@ function M.setup()
 	M.setup_treesitter()
 	M.add_filetype()
 end
+
+return M
