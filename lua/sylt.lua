@@ -4,7 +4,7 @@ function M.setup_treesitter()
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 	parser_config.sylt = {
 		install_info = {
-			url = "git@github.com:Quaqqer/nvim-treesitter-sylt.git",
+			url = "https://github.com/Quaqqer/tree-sitter-sylt.git",
 			files = { "src/parser.c" },
 		},
 		filetype = "sylt",
