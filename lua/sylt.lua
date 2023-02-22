@@ -18,17 +18,29 @@ local function script_path()
 	return str:match("(.*" .. get_path_separator() .. ")")
 end
 
-local M = {}
+local M = {
+	_tree_sitter_setup = false,
+}
 
 function M.setup_treesitter()
-	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-	parser_config.sylt = {
-		install_info = {
-			url = script_path() .. "./../tree-sitter-sylt",
-			files = { "src/parser.c" },
-		},
-		filetype = "sylt",
-	}
+	if not M._tree_sitter_setup then
+		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+		parser_config.sylt = {
+			install_info = {
+				url = script_path() .. "./../tree-sitter-sylt",
+				files = { "src/parser.c" },
+			},
+			filetype = "sylt",
+		}
+
+		M._tree_sitter_setup = true
+	end
+end
+
+function M.install_treesitter()
+	M.setup_treesitter()
+	vim.cmd("TSInstall! sylt")
 end
 
 function M.add_filetype()

@@ -17,8 +17,7 @@ Installation should be simple. Below is an example using lazy.nvim.
    dependencies = 'nvim-treesitter/nvim-treesitter',
    config = true,
    build = function()
-      require('sylt').setup_treesitter()
-      vim.cmd("TSInstall! sylt")
+      require('sylt').install_treesitter()
    end,
 }
 ```
