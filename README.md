@@ -22,3 +22,7 @@ Installation should be simple. Below is an example using lazy.nvim.
    end,
 }
 ```
+
+## Demo
+
+![Image of code highlighting](./res/screenshot.png)
